@@ -3,7 +3,7 @@
 :root {
   --primary-color: #070607;
   --secondary-color: white;
-  --border-radius: 20px;
+  --border-radius: 10px;
 }
 
 html {
@@ -73,7 +73,7 @@ a:active {
   text-decoration: underline;
 }
 
-.fa-times-circle {
+.fa-times {
   float: right;
   cursor: pointer;
   z-index: 2;
@@ -89,6 +89,105 @@ height: 20px;
 width: 20px;
 vertical-align: sub;
 margin-right: 5px;
+}
+
+/* Modal */
+.modal-container {
+  background: rgba(0, 0, 0, 0.411);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.show-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #eed202;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  max-width: 90%;
+  width: 500px;
+  animation: modalopen 1s;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.close-icon {
+  float: right;
+  font-size: 24px;
+  position: relative;
+  top: 13px;
+  right: 13px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.modal-header {
+  background: var(--primary-color);
+  color: whitesmoke;
+  padding: 15px;
+}
+
+h3 {
+  margin: 0;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+/* Form */
+.form-group {
+  height: 30px;
+}
+
+.form-input {
+  width: 97%;
+  padding: 5px;
+  border: 2px solid;
+  color: var(--primary-color);
+  border-radius: var(--border-radius);
+  display: block;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.form-label {
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  color: whitesmoke;
+  background: var(--primary-color);
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: var(--border-radius);
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+button:hover {
+  filter: brightness(120%);
+}
+
+button:focus {
+  outline: none;
 }
 
 @media screen and (max-width: 600px) {
