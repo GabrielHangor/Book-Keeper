@@ -2,8 +2,9 @@
 
 :root {
   --primary-color: #070607;
-  --secondary-color: white;
   --border-radius: 10px;
+  --background-main: #eed202;
+  --font-white: whitesmoke;
 }
 
 html {
@@ -22,7 +23,7 @@ h1 {
   text-align: center;
   color: var(--primary-color);
   padding: 20px;
-  background: #eed202;
+  background: var(--background-main);
   border-radius: var(--border-radius);
   cursor: pointer;
   text-transform: uppercase;
@@ -38,7 +39,7 @@ h1:hover {
 
 /* Bookmarks */
 .container {
-  color: var(--secondary-color);
+  color: var(--font-white);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -53,7 +54,7 @@ h1:hover {
 }
 
 .item:hover {
-  background: #eed202;
+  background: var(--background-main);
 }
 
 a {
@@ -108,7 +109,7 @@ margin-right: 5px;
 }
 
 .modal {
-  background: #eed202;
+  background: var(--background-main);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   max-width: 90%;
   width: 500px;
@@ -132,12 +133,12 @@ margin-right: 5px;
   top: 13px;
   right: 13px;
   cursor: pointer;
-  color: whitesmoke;
+  color: var(--font-white);
 }
 
 .modal-header {
   background: var(--primary-color);
-  color: whitesmoke;
+  color: var(--font-white);
   padding: 15px;
 }
 
@@ -171,7 +172,7 @@ h3 {
 
 button {
   cursor: pointer;
-  color: whitesmoke;
+  color: var(--font-white);
   background: var(--primary-color);
   height: 30px;
   width: 100px;
