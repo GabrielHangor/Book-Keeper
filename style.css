@@ -4,7 +4,7 @@
   --primary-color: #070607;
   --border-radius: 10px;
   --background-main: #eed202;
-  --background-secondary:  rgba(253, 216, 6, 0.8);
+  --background-secondary: rgba(253, 216, 6, 0.8);
   --font-white: whitesmoke;
 }
 
@@ -86,11 +86,12 @@ a:active {
   margin-right: 20px;
 }
 
+
 .name img {
-height: 20px;
-width: 20px;
-vertical-align: sub;
-margin-right: 5px;
+  height: 20px;
+  width: 20px;
+  vertical-align: sub;
+  margin-right: 5px;
 }
 
 /* Modal */
@@ -196,6 +197,5 @@ button:focus {
 @media screen and (max-width: 600px) {
   .container {
     flex-direction: column;
-    
   }
 }

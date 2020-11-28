@@ -6,7 +6,7 @@ const websiteNameEl = document.querySelector("#website-name");
 const websiteUrlEl = document.querySelector("#website-url");
 const bookmarksContainer = document.querySelector("#bookmarks-container");
 
-let bookmarks = [];
+let bookmarks = {};
 
 //  Show modal window
 function showModal() {
@@ -15,7 +15,7 @@ function showModal() {
 }
 
 // Form Validation
-function validate(nameValue, urlValue) {
+function validate(urlValue) {
   const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
   const regex = new RegExp(expression);
 
@@ -38,6 +38,8 @@ window.addEventListener("click", (e) =>
 
 // Populate the UI with bookmarks
 function buildBookmarks() {
+  bookmarksContainer.innerHTML = "";
+
   bookmarks.forEach((bookmark) => {
     const { name, url } = bookmark;
     // Item
@@ -72,10 +74,22 @@ function buildBookmarks() {
 // Get bookmarks from localstorage
 function getBookmarks() {
   localStorage.getItem("bookmarks")
-    ? bookmarks = JSON.parse(localStorage.getItem("bookmarks"))
+    ? (bookmarks = JSON.parse(localStorage.getItem("bookmarks")))
     : localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
   buildBookmarks();
+}
+
+// Delete the specific bookmark from the UI and localstorage, repopulate the DOM
+function deleteBookmark(url) {
+  bookmarks.forEach((bookmark, i) => {
+    if (bookmark.url === url) {
+      bookmarks.splice(i, 1);
+    }
+  });
+
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  getBookmarks();
 }
 
 // Handle data from Form
@@ -83,7 +97,7 @@ function storeBookmark(e) {
   const nameValue = websiteNameEl.value;
   let urlValue = websiteUrlEl.value;
 
-  if (!validate(nameValue, urlValue)) {
+  if (!validate(urlValue)) {
     return false;
   }
 
