@@ -6,7 +6,9 @@ const websiteNameEl = document.querySelector("#website-name");
 const websiteUrlEl = document.querySelector("#website-url");
 const bookmarksContainer = document.querySelector("#bookmarks-container");
 
-//  Show modal
+let bookmarks = [];
+
+//  Show modal window
 function showModal() {
   modal.classList.add("show-modal");
   websiteNameEl.focus();
@@ -18,7 +20,7 @@ function validate(nameValue, urlValue) {
   const regex = new RegExp(expression);
 
   if (!urlValue.match(regex)) {
-    alert("Please provide a valid web adress");
+    alert("Please provide a complete web adress");
     return false;
   }
 
@@ -34,21 +36,40 @@ window.addEventListener("click", (e) =>
   e.target === modal ? modal.classList.remove("show-modal") : false
 );
 
+// Get bookmarks from localstorage
+function getBookmarks() {
+  localStorage.getItem("bookmarks")
+    ? bookmarks = JSON.parse(localStorage.getItem("bookmarks"))
+    : localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+}
+
 // Handle data from Form
 function storeBookmark(e) {
   const nameValue = websiteNameEl.value;
   let urlValue = websiteUrlEl.value;
-  if (!urlValue.includes("http://" && "https://")) {
-    urlValue = `https://${urlValue}`;
-  }
 
-  console.log(urlValue);
   if (!validate(nameValue, urlValue)) {
     return false;
   }
+
+  const bookmark = {
+    name: nameValue,
+    url: urlValue,
+  };
+
+  bookmarks.push(bookmark);
+  bookmarkForm.reset();
+  websiteNameEl.focus();
+
+  // Save bookmarks in localstorage
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
   e.preventDefault();
 }
 
 // Event Listener
 bookmarkForm.addEventListener("submit", storeBookmark);
+
+
+// On load
+getBookmarks();
